@@ -1,15 +1,15 @@
 name: 'Zeta Pass Build Pipeline'
 
 on:
-  workflow_dispatch: # GitHub üzerinden butona basarak manuel çalıştırmayı sağlar
+  workflow_dispatch:
   push:
     tags:
-      - 'v*' # v1.0.0 gibi bir etiket (tag) gönderdiğinde otomatik çalışır
+      - 'v*'
 
 jobs:
   publish-tauri:
     permissions:
-      contents: write # GitHub Releases kısmına dosya yüklemek için gerekli izin
+      contents: write
     runs-on: windows-latest
 
     steps:
@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: 'npm'
+          # Cache satırı kaldırıldı
 
       - name: Install Rust Stable
         uses: dtolnay/rust-toolchain@stable
